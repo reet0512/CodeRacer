@@ -9,7 +9,7 @@ const app = express()
 const expressServer = app.listen(3001)
 const io = socketio(expressServer, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:3002', 'http://localhost:3003']
+    origin: ['http://localhost:3000', 'http://localhost:3002', 'http://localhost:3003', 'http://localhost:3004']
   }
 })
 
