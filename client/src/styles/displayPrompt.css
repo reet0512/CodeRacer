@@ -1,0 +1,14 @@
+.game-prompt {
+    margin: 2vh 2vw;
+    border: solid 2px rgb(90, 139, 161);
+    align-items: center;
+    border-radius: 10px;
+}
+
+.already-typed {
+    color: rgb(31, 245, 31)
+}
+
+.typing {
+    text-decoration: underline;
+}

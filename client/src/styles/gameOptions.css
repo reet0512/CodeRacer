@@ -1,0 +1,24 @@
+.home-tag {
+    text-decoration: none;
+    color: black;
+}
+
+.home-tag:hover {
+    text-decoration: underline;
+}
+
+.game-option {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+}
+
+.game-option h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color:rgb(75, 156, 38);
+}
+
+.game-option input {
+    margin: 1vh 0vw;
+}

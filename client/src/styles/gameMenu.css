@@ -1,0 +1,27 @@
+.game-menu {
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.game-menu h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color:rgb(75, 156, 38);
+}
+
+.game-menu button {
+    margin: 2vh 2vw;
+}
+
+.questions {
+    text-align: start;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+.questions h2 {
+    text-decoration: underline;
+    margin: 3vh 0vw;
+}
+
+.questions h4 {
+    color:rgb(79, 75, 75);
+}
