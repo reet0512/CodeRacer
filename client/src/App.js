@@ -10,17 +10,27 @@ import CodeRacer from './components/CodeRacer';
 function App() {
   let navigate = useNavigate()
   const [gameState, setGameState] = useState({_id: "", words: [], open: false, over: false, players: []})
+  const [errorMessage, setErrorMessage] = useState(false)
   useEffect(() => {
     socket.on('update-game', (game) => {
       console.log(game)
-      if(game === []) {
-        navigate('/error')
-      } else {
-        setGameState(game)
-      }
+      setGameState(game)
     })
     return () => {
       socket.removeAllListeners();
+    }
+  }, [])
+  useEffect(() => {
+    socket.on('error-message', (msg) => {
+      setErrorMessage(true)
+      if(msg === 'idError')
+        navigate('/game/join')
+      else
+        navigate('/error')
+    })
+    return () => {
+      setErrorMessage(false)
+      socket.removeListener('error-message')
     }
   }, [navigate])
   useEffect(() => {
@@ -31,7 +41,7 @@ function App() {
     <Routes>
       <Route path='/' element={<GameMenu />}/>
       <Route path='/game/create' element={<CreateGame />}/>
-      <Route path='/game/join' element={<JoinGame />}/>
+      <Route path='/game/join' element={<JoinGame error={errorMessage}/>}/>
       <Route path='/error' element={<ErrorPage />}/>
       <Route path='/game/:gameId' element={<CodeRacer gameState={gameState}/>}/>
     </Routes>

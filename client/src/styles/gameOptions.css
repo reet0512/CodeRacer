@@ -22,3 +22,7 @@
 .game-option input {
     margin: 1vh 0vw;
 }
+
+.error-message {
+    color: red;
+}

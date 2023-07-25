@@ -2,7 +2,7 @@ import { useState } from "react";
 import socket from '../socketConfig';
 import '../styles/gameOptions.css';
 
-const JoinGame = () => {
+const JoinGame = ({error}) => {
     const [formInput,  setFormInput] = useState({username: "", gameId: ""});
     const changeFormInput = e => {
         setFormInput({...formInput, [e.target.name]: e.target.value});
@@ -17,6 +17,7 @@ const JoinGame = () => {
             <a className="home-tag" href="/"> {'<-'} Return to Home</a>
             <div className="game-option">
                 <div className="col-sm-6">
+                    {error ? <p className="text-center error-message">Couldn't find Game ID</p> : null}
                     <h1 className="text-center">Join Game</h1>
                     <form onSubmit={submitForm}>
                         <div className="form-group">

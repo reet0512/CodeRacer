@@ -18,9 +18,16 @@ const db = mongoose.connection
 db.on('error', error => {
   console.error(error)
 })
-db.once('open', () => {
-  console.log('Connected to Mongoose')
+db.once('open', async() => {
+  try {
+    console.log('Connected to Mongoose')
+  } catch(err) {
+    console.log(err)
+  }
 })
+
+
+
 
 const calculateTime = (time) => {
   let minutes = parseInt(time / 60)
@@ -57,6 +64,7 @@ const startGameClock = async(gameId) => {
           })
           game = await game.save()
           io.to(gameId).emit('update-game', game)
+          const deleteGame = await Game.deleteOne({ _id: game._id });
           clearInterval(timerId)
         })()
       }
@@ -81,12 +89,19 @@ io.on('connect', (socket) => {
       socket.join(gameId)
       io.to(gameId).emit('update-game', game)
     } catch(err) {
+      let msg = "Internal Error"
+      socket.emit('error-message', msg)
       console.log(err)
     }
   })
   socket.on('join-game', async({username, gameId}) => {
     try{
       let game = await Game.findById(gameId)
+      if(game === null) {
+        let msg = "idError"
+        socket.emit('error-message', msg)
+        return
+      }
       if(game.open) {
         socket.join(gameId)
         let player = {
@@ -98,8 +113,8 @@ io.on('connect', (socket) => {
         io.to(gameId).emit('update-game', game)
       }
     } catch (err) {
-      io.to(gameId).emit('update-game', [])
-      console.log(err)
+      let msg = "idError"
+      socket.emit('error-message', msg)
     }
   })
 
@@ -145,6 +160,8 @@ io.on('connect', (socket) => {
         }
       }
     } catch(err) {
+      let msg = "Internal Error"
+      socket.emit('error-message', msg)
       console.log(err)
     }
   })
