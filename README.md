@@ -2,6 +2,8 @@
 
 <a href="https://youtu.be/EBrdpG-kdWU">Demo Video Link</a> </br>
 <a href="https://drive.google.com/file/d/1ZwUMgdlnb-sBGRBUsvwkOcfIiWwAWZLm/view?usp=sharing">Alternate Video Link</a>
+
+![Code Racer Demo](./demo.jpg)
 ---
 
 ## Premise
